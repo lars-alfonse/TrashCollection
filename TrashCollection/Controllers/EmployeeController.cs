@@ -6,17 +6,18 @@ using System.Web.Mvc;
 
 namespace TrashCollection.Controllers
 {
-    public class CustomerController : Controller
+    public class EmployeeController : Controller
     {
+        // GET: Employee
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Account()
+        public ActionResult Support()
         {
             return View();
         }
-        public ActionResult Billing()
+        public ActionResult Work()
         {
             return View();
         }
