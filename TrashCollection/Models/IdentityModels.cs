@@ -17,7 +17,6 @@ namespace TrashCollection.Models
  
             return userIdentity;
         }
-        public int AddressID { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

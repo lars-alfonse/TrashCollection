@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201709071527563_added user addres junction table.Designer.cs">
       <DependentUpon>201709071527563_added user addres junction table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709071911036_removed address ID from users.cs" />
+    <Compile Include="Migrations\201709071911036_removed address ID from users.Designer.cs">
+      <DependentUpon>201709071911036_removed address ID from users.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModels.cs" />
@@ -286,6 +290,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Customer_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709071527563_added user addres junction table.resx">
       <DependentUpon>201709071527563_added user addres junction table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709071911036_removed address ID from users.resx">
+      <DependentUpon>201709071911036_removed address ID from users.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
