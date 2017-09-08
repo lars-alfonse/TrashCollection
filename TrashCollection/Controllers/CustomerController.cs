@@ -21,7 +21,10 @@ namespace TrashCollection.Controllers
         }
         public ActionResult Account()
         {
-            return View();
+            var username = User.Identity.GetUserName();
+            var user = (from data in context.Users where data.UserName == username select data).First();
+            var addresses = (from data in context.UserAddresses where data.User.Id == user.Id select data.Address).ToList();
+            return View(addresses);
         }
         public ActionResult Billing()
         {
@@ -52,7 +55,7 @@ namespace TrashCollection.Controllers
                 context.UserAddresses.Add(junction);
                 context.SaveChanges();
             }
-            return RedirectToAction("Index", "Customer");
+            return RedirectToAction("Account", "Customer");
         }
         private AddressModels GetAddress(AddressModels model)
         {

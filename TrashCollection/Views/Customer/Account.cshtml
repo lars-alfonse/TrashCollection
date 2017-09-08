@@ -1,9 +1,30 @@
-﻿
+﻿@model List<TrashCollection.Models.AddressModels>
 @{
     ViewBag.Title = "Account";
 }
-
 <h2>Account</h2>
-<p>This will display addresses, and have the option to add and edit pick up locations</p>
-<p>This will also be an option to set dates</p>
+@Html.ActionLink("Add Address", "AddAddress", "Customer")
+@if (Model.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var address in Model)
+            {
+                <tr>
+                    <td>@address.addressLine</td>
+                    <td>@Html.ActionLink("Remove", "Delete", "Customer", new { id = address.ID }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div><p>You currently have no addresses. Please click the 'Add Address' button to add an address.</p></div>
+}
 
