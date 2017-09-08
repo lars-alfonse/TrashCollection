@@ -35,5 +35,7 @@ namespace TrashCollection.Models
         public DbSet<States> State { get; set; }
         public DbSet<ZipCode> Zip { get; set; }
         public DbSet<UserAddressJunction> UserAddresses { get; set; }
+        public DbSet<DayOfWeek> Day { get; set; }
+        public DbSet<UserAddressDayJunction> UserAddressDay { get; set; }
     }
 }

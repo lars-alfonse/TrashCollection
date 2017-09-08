@@ -57,6 +57,16 @@ namespace TrashCollection.Controllers
             }
             return RedirectToAction("Account", "Customer");
         }
+        public ActionResult DeleteAddress(int id)
+        {
+            UserAddressJunction junction;
+            var username = User.Identity.GetUserName();
+            var user = (from data in context.Users where data.UserName == username select data).First();
+            junction = (from data in context.UserAddresses where data.Address.ID == id && data.User.Id == user.Id select data).First();
+            context.UserAddresses.Remove(junction);
+            context.SaveChanges();
+            return RedirectToAction("Account", "Customer");
+        }
         private AddressModels GetAddress(AddressModels model)
         {
             model.City = GetCity(model);

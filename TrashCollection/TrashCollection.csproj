@@ -227,12 +227,23 @@
     <Compile Include="Migrations\201709081522487_removed the addressID and userID from junction table.Designer.cs">
       <DependentUpon>201709081522487_removed the addressID and userID from junction table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709081933045_added day of week table and added day to address junction table.cs" />
+    <Compile Include="Migrations\201709081933045_added day of week table and added day to address junction table.Designer.cs">
+      <DependentUpon>201709081933045_added day of week table and added day to address junction table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709081956425_added day and userAddress junction.cs" />
+    <Compile Include="Migrations\201709081956425_added day and userAddress junction.Designer.cs">
+      <DependentUpon>201709081956425_added day and userAddress junction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddressDateViewModel.cs" />
     <Compile Include="Models\AddressModels.cs" />
     <Compile Include="Models\CustomerViewModels.cs" />
+    <Compile Include="Models\DayOfWeek.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserAddressDayJunction.cs" />
     <Compile Include="Models\UserAddressJunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -337,6 +348,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709081522487_removed the addressID and userID from junction table.resx">
       <DependentUpon>201709081522487_removed the addressID and userID from junction table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709081933045_added day of week table and added day to address junction table.resx">
+      <DependentUpon>201709081933045_added day of week table and added day to address junction table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709081956425_added day and userAddress junction.resx">
+      <DependentUpon>201709081956425_added day and userAddress junction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
