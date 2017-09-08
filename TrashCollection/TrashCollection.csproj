@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201709071911036_removed address ID from users.Designer.cs">
       <DependentUpon>201709071911036_removed address ID from users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709081522487_removed the addressID and userID from junction table.cs" />
+    <Compile Include="Migrations\201709081522487_removed the addressID and userID from junction table.Designer.cs">
+      <DependentUpon>201709081522487_removed the addressID and userID from junction table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModels.cs" />
@@ -330,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709071911036_removed address ID from users.resx">
       <DependentUpon>201709071911036_removed address ID from users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709081522487_removed the addressID and userID from junction table.resx">
+      <DependentUpon>201709081522487_removed the addressID and userID from junction table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
