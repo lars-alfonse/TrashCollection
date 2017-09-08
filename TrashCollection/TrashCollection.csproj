@@ -226,6 +226,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressModels.cs" />
+    <Compile Include="Models\CustomerViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserAddressJunction.cs" />
@@ -300,6 +301,8 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Work.cshtml" />
     <Content Include="Views\Employee\Support.cshtml" />
+    <Content Include="Views\Customer\CheckAddresses.cshtml" />
+    <Content Include="Views\Customer\AddAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

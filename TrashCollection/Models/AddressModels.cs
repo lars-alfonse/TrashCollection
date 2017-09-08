@@ -11,7 +11,9 @@ namespace TrashCollection.Models
     {
         [Key]
         public int ID { get; set; }
+        [Display(Name = "Address")]
         public string addressLine { get; set; }
+        [Display(Name = "City")]
         public int CitiesID { get; set; }
         public int ZipCodeID { get; set; }
 
@@ -23,6 +25,7 @@ namespace TrashCollection.Models
     {
         [Key]
         public int CitiesID { get; set; }
+        [Display(Name = "City")]
         public string name { get; set; }
         public int StatesID { get; set; }
         public States State { get; set; }
@@ -32,6 +35,7 @@ namespace TrashCollection.Models
     {
         [Key]
         public int StatesID { get; set; }
+        [Display(Name = "State")]
         public string Name { get; set; }
         public string abbreviation { get; set; }
     }
@@ -39,6 +43,7 @@ namespace TrashCollection.Models
     {
         [Key]
         public int ZipCodeID { get; set; }
+        [Display(Name = "Zip")]
         public int zip { get; set; }
     }
 }
