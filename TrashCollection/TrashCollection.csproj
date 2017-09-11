@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201709081956425_added day and userAddress junction.Designer.cs">
       <DependentUpon>201709081956425_added day and userAddress junction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709111358208_test migration.cs" />
+    <Compile Include="Migrations\201709111358208_test migration.Designer.cs">
+      <DependentUpon>201709111358208_test migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressDateViewModel.cs" />
@@ -318,6 +322,7 @@
     <Content Include="Views\Employee\Support.cshtml" />
     <Content Include="Views\Customer\CheckAddresses.cshtml" />
     <Content Include="Views\Customer\AddAddress.cshtml" />
+    <Content Include="Views\Customer\EditDays.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709081956425_added day and userAddress junction.resx">
       <DependentUpon>201709081956425_added day and userAddress junction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709111358208_test migration.resx">
+      <DependentUpon>201709111358208_test migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

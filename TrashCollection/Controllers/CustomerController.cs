@@ -14,19 +14,43 @@ namespace TrashCollection.Controllers
         public CustomerController()
         {
             context = new ApplicationDbContext();
+            context.UserAddresses.Include("User");
+            context.UserAddresses.Include("Address");
+            context.Address.Include("City");
+            context.Address.Include("Zip");
+            context.City.Include("State");
         }
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult Account()
+
         {
             var username = User.Identity.GetUserName();
             var user = (from data in context.Users where data.UserName == username select data).First();
-            var addresses = (from data in context.UserAddresses where data.User.Id == user.Id select data.Address).ToList();
-            return View(addresses);
+            var userAddresses = (from data in context.UserAddresses.Include("Address") where data.User.Id == user.Id select data).ToList();
+            AddressDateViewModel Pickups = new AddressDateViewModel();
+            foreach (var address in userAddresses)
+            {
+                var days = (from data in context.UserAddressDay.Include("Day") where data.UserAddress.ID == address.ID select data).ToList();
+                if(days.Count > 0)
+                {
+                    Pickups.Days.AddRange(days);
+                }
+            }
+            Pickups.userAddresses = userAddresses;
+            foreach (var address in userAddresses)
+            {
+                Pickups.addresses.Add((from data in context.Address.Include("City").Include("Zip").Include("City.State") where address.Address.ID == data.ID select data).First());
+            }
+            return View(Pickups);
         }
         public ActionResult Billing()
+        {
+            return View();
+        }
+        public ActionResult EditDays(int id)
         {
             return View();
         }

@@ -1,10 +1,10 @@
-﻿@model List<TrashCollection.Models.AddressModels>
+﻿@model TrashCollection.Models.AddressDateViewModel
 @{
     ViewBag.Title = "Account";
 }
 <h2>Account</h2>
 @Html.ActionLink("Add Address", "AddAddress", "Customer")
-@if (Model.Count > 0)
+@if (Model.userAddresses.Count > 0)
 {
     <table class="table table-bordered table-hover">
         <thead>
@@ -13,10 +13,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var address in Model)
+            @foreach (var address in Model.addresses)
             {
+                
                 <tr>
                     <td>@address.addressLine</td>
+                    <td>@address.City.name @address.City.State.Name</td>
+                @if (Model.Days.Where(data => data.UserAddress.ID == address.ID).ToList().Count > 0)
+                {
+                    foreach (var thing in Model.Days.Where(data => data.UserAddress.ID == address.ID).ToList())
+                    {
+                        <td>@thing.Day.DayPrefix</td>
+                    }
+                }
+                    <td>@Html.ActionLink("EditDays", "EditDays", "Customer", new { id = address.ID }, null)</td>
                     <td>@Html.ActionLink("Remove", "DeleteAddress", "Customer", new { id = address.ID }, null)</td>
                 </tr>
             }
