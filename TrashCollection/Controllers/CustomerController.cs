@@ -113,6 +113,7 @@ namespace TrashCollection.Controllers
             ViewBag.Name = new SelectList(context.Day.ToList(), "Id","DayPrefix");
             return View(model);
         }
+
         [HttpPost]
         public ActionResult AddDay(UserAddressDayJunction model)
         {
@@ -125,6 +126,21 @@ namespace TrashCollection.Controllers
                 context.SaveChanges();
             }
             return RedirectToAction("Account","Customer");
+        }
+        public ActionResult ChangeActive(int id)
+        {
+            var account = (from data in context.UserAddresses where data.ID == id select data).First();
+            if (account.IsActive)
+            {
+                account.IsActive = false;
+                context.SaveChanges();
+            }
+            else
+            {
+                account.IsActive = true;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Account", "Customer");
         }
         private AddressModels GetAddress(AddressModels model)
         {
