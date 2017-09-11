@@ -19,6 +19,15 @@
                 <tr>
                     <td>@address.addressLine</td>
                     <td>@address.City.name @address.City.State.Name</td>
+                    @if(Model.userAddresses.Where(m => m.Address.ID == address.ID).First().IsActive)
+                    {
+                        <td>Active @Html.ActionLink("Change", "ChangeActive", "Customer", new { id = Model.userAddresses.Where(m => m.Address.ID == address.ID).First().ID }, null)</td>
+                    }
+                    else
+                    {
+                        <td>Inactive @Html.ActionLink("Change", "ChangeActive", "Customer", new { id = Model.userAddresses.Where(m => m.Address.ID == address.ID).First().ID }, null)</td>
+                    }
+                    
                 @if (Model.Days.Where(data => data.UserAddress.ID == address.ID).ToList().Count > 0)
                 {
                     foreach (var thing in Model.Days.Where(data => data.UserAddress.ID == address.ID).ToList())

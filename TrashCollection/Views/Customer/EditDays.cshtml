@@ -1,7 +1,31 @@
-﻿
+﻿@model TrashCollection.Models.AddressDateViewModel
 @{
     ViewBag.Title = "EditDays";
 }
 
-<h2>EditDays</h2>
-
+<h2>Pick ups</h2>
+<h4>Pick up Days For @Model.userAddresses[0].Address.addressLine</h4>
+@Html.ActionLink("Add Pickup", "AddDay", "Customer", new {id = Model.userAddresses[0].ID}, null)
+@if (Model.Days.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var date in Model.Days)
+            {
+            <tr>
+                <td>@date.Day.DayPrefix</td>
+                <td>@Html.ActionLink("Remove", "DeleteDay", "Customer", new { id = date.Id }, null)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div><p>@Model.userAddresses[0].Address.addressLine currently has no scheduled pick ups. Please click the 'Add Day' button to add a pickup date.</p></div>
+}

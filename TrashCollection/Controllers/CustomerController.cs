@@ -43,6 +43,7 @@ namespace TrashCollection.Controllers
             foreach (var address in userAddresses)
             {
                 Pickups.addresses.Add((from data in context.Address.Include("City").Include("Zip").Include("City.State") where address.Address.ID == data.ID select data).First());
+
             }
             return View(Pickups);
         }
@@ -52,7 +53,20 @@ namespace TrashCollection.Controllers
         }
         public ActionResult EditDays(int id)
         {
-            return View();
+            AddressDateViewModel model = new AddressDateViewModel();
+            model.DaysOfWeek = context.Day.ToList();
+            model.userAddresses = (from data in context.UserAddresses.Include("User").Include("Address.City.State").Include("Address.Zip") where data.Address.ID == id select data).ToList();
+            var ID = model.userAddresses.FirstOrDefault().ID;
+            model.Days = (from data in context.UserAddressDay.Include("UserAddress").Include("Day") where data.UserAddress.ID == ID select data).ToList();
+            return View(model);
+
+        }
+        public ActionResult DeleteDay(int id)
+        {
+            var date = (from data in context.UserAddressDay where data.Id == id select data).First();
+            context.UserAddressDay.Remove(date);
+            context.SaveChanges();
+            return RedirectToAction("Account", "Customer");
         }
         [HttpGet]
         public ActionResult AddAddress()
@@ -90,6 +104,27 @@ namespace TrashCollection.Controllers
             context.UserAddresses.Remove(junction);
             context.SaveChanges();
             return RedirectToAction("Account", "Customer");
+        }
+        [HttpGet]
+        public ActionResult AddDay(int id)
+        {
+            UserAddressDayJunction model = new UserAddressDayJunction();
+            model.UserAddress = (from data in context.UserAddresses.Include("Address").Include("User") where data.ID == id select data).First();
+            ViewBag.Name = new SelectList(context.Day.ToList(), "Id","DayPrefix");
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult AddDay(UserAddressDayJunction model)
+        {
+            var days = (from data in context.UserAddressDay.Include("UserAddress").Include("Day") where data.UserAddress.ID == model.UserAddress.ID && model.Day.Id == data.Day.Id select data).ToList();
+            if (days.Count == 0)
+            {
+                model.Day = (from data in context.Day where data.Id == model.Day.Id select data).First();
+                model.UserAddress = (from data in context.UserAddresses.Include("Address").Include("User") where data.ID == model.UserAddress.ID select data).First();
+                context.UserAddressDay.Add(model);
+                context.SaveChanges();
+            }
+            return RedirectToAction("Account","Customer");
         }
         private AddressModels GetAddress(AddressModels model)
         {

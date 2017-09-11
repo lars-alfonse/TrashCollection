@@ -323,6 +323,7 @@
     <Content Include="Views\Customer\CheckAddresses.cshtml" />
     <Content Include="Views\Customer\AddAddress.cshtml" />
     <Content Include="Views\Customer\EditDays.cshtml" />
+    <Content Include="Views\Customer\AddDay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
