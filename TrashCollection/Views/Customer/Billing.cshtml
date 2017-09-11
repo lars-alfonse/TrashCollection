@@ -1,4 +1,4 @@
-﻿
+﻿@model TrashCollection.Models.Account
 @{
     ViewBag.Title = "Billing";
 }
@@ -6,3 +6,15 @@
 <h2>Billing</h2>
 <p>add paypal garbage here</p>
 
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Account</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Balance : $@Model.Balance</td>
+            <td>@Html.ActionLink("Make Payment", "Payment", "Customer", new { id = Model.ID }, null)</td>
+            <td>@Html.ActionLink("View History", "AccountHistory", "Customer", new { id = Model.ID }, null)</td>
+        </tr>

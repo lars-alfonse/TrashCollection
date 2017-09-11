@@ -239,10 +239,15 @@
     <Compile Include="Migrations\201709111358208_test migration.Designer.cs">
       <DependentUpon>201709111358208_test migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709112019153_added transaction and account tables.cs" />
+    <Compile Include="Migrations\201709112019153_added transaction and account tables.Designer.cs">
+      <DependentUpon>201709112019153_added transaction and account tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressDateViewModel.cs" />
     <Compile Include="Models\AddressModels.cs" />
+    <Compile Include="Models\BillingModels.cs" />
     <Compile Include="Models\CustomerViewModels.cs" />
     <Compile Include="Models\DayOfWeek.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -363,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709111358208_test migration.resx">
       <DependentUpon>201709111358208_test migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709112019153_added transaction and account tables.resx">
+      <DependentUpon>201709112019153_added transaction and account tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

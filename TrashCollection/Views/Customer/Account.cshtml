@@ -25,7 +25,7 @@
                     }
                     else
                     {
-                        <td>Inactive @Html.ActionLink("Change", "ChangeActive", "Customer", new { id = Model.userAddresses.Where(m => m.Address.ID == address.ID).First().ID }, null)</td>
+                        <td>ctive @Html.ActionLink("Change", "ChangeActive", "Customer", new { id = Model.userAddresses.Where(m => m.Address.ID == address.ID).First().ID }, null)</td>
                     }
                     
                 @if (Model.Days.Where(data => data.UserAddress.ID == address.ID).ToList().Count > 0)

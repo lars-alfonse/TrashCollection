@@ -49,7 +49,22 @@ namespace TrashCollection.Controllers
         }
         public ActionResult Billing()
         {
-            return View();
+            var username = User.Identity.GetUserName();
+            var user = (from data in context.Users where data.UserName == username select data).First();
+            try
+            {
+                var Account = (from data in context.Accounts.Include("User") where data.User.Id == user.Id select data).First();
+            }
+            catch
+            {
+                Account account = new Models.Account();
+                account.Balance = 0;
+                account.User = user;
+                context.Accounts.Add(account);
+                context.SaveChanges();
+            }
+            var currentAccount = (from data in context.Accounts.Include("User") where data.User.Id == user.Id select data).First();
+            return View(currentAccount);
         }
         public ActionResult EditDays(int id)
         {

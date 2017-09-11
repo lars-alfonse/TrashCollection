@@ -37,5 +37,8 @@ namespace TrashCollection.Models
         public DbSet<UserAddressJunction> UserAddresses { get; set; }
         public DbSet<DayOfWeek> Day { get; set; }
         public DbSet<UserAddressDayJunction> UserAddressDay { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transactions> Transactions { get; set; }
+
     }
 }
