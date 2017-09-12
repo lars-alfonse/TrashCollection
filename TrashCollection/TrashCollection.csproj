@@ -254,6 +254,7 @@
     <Compile Include="Models\BillingModels.cs" />
     <Compile Include="Models\CustomerViewModels.cs" />
     <Compile Include="Models\DayOfWeek.cs" />
+    <Compile Include="Models\EmployeeWorkViewModel.cs" />
     <Compile Include="Models\EmployeeZipJunction.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
