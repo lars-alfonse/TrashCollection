@@ -4,7 +4,7 @@
 }
 
 <table> 
-    <thead>
+    <thead class="table table-bordered table-hover">
         <tr> 
             <th>Current ZipCode</th>
         </tr>
@@ -26,7 +26,7 @@
 </table>
 <div>
     <h2>Scheduled Pick-Ups</h2>
-    <table>
+    <table class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Today's Pick-Ups</th>
@@ -46,6 +46,29 @@
                     <td>@pickup.Address.addressLine</td>
                     <td>@Html.ActionLink("Pick up", "Pickup", "Employee", new { id = pickup.ID }, null)</td>
                     <td>@Html.ActionLink("Report Problem", "Report", "Employee", new { id = pickup.ID }, null)</td>
+                </tr>
+            }
+        }
+    </table>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Tomorrow's Pick-Ups</th>
+            </tr>
+        </thead>
+        @if (Model.TomorrowTrash.Count == 0)
+        {
+            <tr>
+                <td>Nothing Scheduled for Tomorrow </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var pickup in Model.TomorrowTrash)
+            {
+                <tr>
+                    <td>@pickup.Address.addressLine</td>
+
                 </tr>
             }
         }

@@ -25,7 +25,7 @@ namespace TrashCollection.Controllers
             return View();
         }
         public ActionResult Work()
-        {
+        { 
             var username = User.Identity.GetUserName();
             var user = (from data in context.Users where data.UserName == username select data).First();
             EmployeeWorkViewModel model = new EmployeeWorkViewModel();
@@ -33,10 +33,18 @@ namespace TrashCollection.Controllers
             model.Today = today.DayOfWeek.ToString();
             model.Tomorrow = GetTomorrow(model.Today);
             model.Zip = (from data in context.WorkZip.Include("ZipCode") where data.User.Id == user.Id select data).FirstOrDefault();
-            if(model.Zip != null)
+            if(model.Zip!= null)
             {
-                model.TodayTrash = (from data in context.UserAddressDay.Include("UserAddress.Address").Include("UserAddress.Address.City").Include("UserAddress.Address.Zip").Include("UserAddress.Address.City.State").Include("UserAddress.User") where data.Day.DayPrefix == model.Today && data.UserAddress.Address.Zip.zip == model.Zip.ZipCode.zip && data.UserAddress.IsActive select data.UserAddress).ToList();
-                model.TomorrowTrash = (from data in context.UserAddressDay.Include("UserAddress.Address").Include("UserAddress.Address.City").Include("UserAddress.Address.Zip").Include("UserAddress.Address.City.State").Include("UserAddress.User") where data.Day.DayPrefix == model.Tomorrow && data.UserAddress.Address.Zip.zip == model.Zip.ZipCode.zip select data.UserAddress).ToList();
+                var TodayTrash = (from data in context.UserAddressDay.Include("UserAddress").Include("UserAddress.Address").Include("UserAddress.Address.City").Include("UserAddress.Address.Zip").Include("UserAddress.Address.City.State").Include("UserAddress.User") where data.Day.DayPrefix == model.Today && data.UserAddress.Address.Zip.zip == model.Zip.ZipCode.zip && data.UserAddress.IsActive select data.UserAddress).ToList();
+                foreach(var item in TodayTrash)
+                {
+                    model.TodayTrash.Add((from data in context.UserAddresses.Include("Address").Include("User") where data.ID == item.ID select data).First());
+                }
+                var TomorrowTrash = (from data in context.UserAddressDay.Include("UserAddress").Include("UserAddress.Address").Include("UserAddress.Address.City").Include("UserAddress.Address.Zip").Include("UserAddress.Address.City.State").Include("UserAddress.User") where data.Day.DayPrefix == model.Tomorrow && data.UserAddress.Address.Zip.zip == model.Zip.ZipCode.zip select data.UserAddress).ToList();
+                foreach (var item in TomorrowTrash)
+                {
+                    model.TomorrowTrash.Add((from data in context.UserAddresses.Include("Address").Include("User") where data.ID == item.ID select data).First());
+                }
             }
             return View(model);
         }
@@ -53,7 +61,7 @@ namespace TrashCollection.Controllers
             var user = (from data in context.Users where data.UserName == username select data).First();
             model.User = user;
             model.ZipCode = GetZip(model);
-            var currentZipJunction = (from data in context.WorkZip where data.User.Id == user.Id select data).FirstOrDefault();
+            var currentZipJunction = (from data in context.WorkZip.Include("ZipCode") where data.User.Id == user.Id select data).FirstOrDefault();
             if(currentZipJunction == null)
             {
                 context.WorkZip.Add(model);
@@ -61,7 +69,7 @@ namespace TrashCollection.Controllers
             }
             else
             {
-                currentZipJunction.ZipCode.ZipCodeID = model.ZipCode.ZipCodeID;
+                currentZipJunction.ZipCode = model.ZipCode;
                 context.SaveChanges();
             }
             return RedirectToAction("Work", "Employee");
