@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201709112019153_added transaction and account tables.Designer.cs">
       <DependentUpon>201709112019153_added transaction and account tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709121346058_Added employee zip code junction.cs" />
+    <Compile Include="Migrations\201709121346058_Added employee zip code junction.Designer.cs">
+      <DependentUpon>201709121346058_Added employee zip code junction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressDateViewModel.cs" />
@@ -250,6 +254,7 @@
     <Compile Include="Models\BillingModels.cs" />
     <Compile Include="Models\CustomerViewModels.cs" />
     <Compile Include="Models\DayOfWeek.cs" />
+    <Compile Include="Models\EmployeeZipJunction.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserAddressDayJunction.cs" />
@@ -372,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709112019153_added transaction and account tables.resx">
       <DependentUpon>201709112019153_added transaction and account tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709121346058_Added employee zip code junction.resx">
+      <DependentUpon>201709121346058_Added employee zip code junction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
