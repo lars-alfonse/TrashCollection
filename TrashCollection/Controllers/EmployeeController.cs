@@ -40,6 +40,48 @@ namespace TrashCollection.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        public ActionResult SelectZipCode( )
+        {
+            EmployeeZipJunction model = new EmployeeZipJunction();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult SelectZipCode(EmployeeZipJunction model)
+        {
+            var username = User.Identity.GetUserName();
+            var user = (from data in context.Users where data.UserName == username select data).First();
+            model.User = user;
+            model.ZipCode = GetZip(model);
+            var currentZipJunction = (from data in context.WorkZip where data.User.Id == user.Id select data).FirstOrDefault();
+            if(currentZipJunction == null)
+            {
+                context.WorkZip.Add(model);
+                context.SaveChanges();
+            }
+            else
+            {
+                currentZipJunction.ZipCode.ZipCodeID = model.ZipCode.ZipCodeID;
+                context.SaveChanges();
+            }
+            return RedirectToAction("Work", "Employee");
+        }
+
+        private ZipCode GetZip(EmployeeZipJunction model)
+        {
+            var matchedZip = (from data in context.Zip where data.zip == model.ZipCode.zip select data).FirstOrDefault();
+            if(matchedZip != null)
+            {
+                return matchedZip;
+            }
+            else
+            {
+                context.Zip.Add(model.ZipCode);
+                context.SaveChanges();
+                var currentZip = (from data in context.Zip where data.zip == model.ZipCode.zip select data).First();
+                return currentZip;
+            }
+        }
 
         private string GetTomorrow(string day)
         {
