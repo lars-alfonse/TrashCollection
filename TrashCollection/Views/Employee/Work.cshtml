@@ -1,7 +1,53 @@
-﻿
+﻿@model TrashCollection.Models.EmployeeWorkViewModel
 @{
     ViewBag.Title = "Work";
 }
 
-<h2>Work</h2>
-
+<table> 
+    <thead>
+        <tr> 
+            <th>Current ZipCode</th>
+        </tr>
+    </thead>
+    @if (Model.Zip == null)
+    {
+        <tr>
+            <td>No zip code selected </td>
+            <td>@Html.ActionLink("Select", "SelectZipCode","Employee")</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>@Model.Zip.ZipCode.zip</td>
+            <td>@Html.ActionLink("Change", "SelectZipCode", "Employee")</td>
+        </tr>
+    }
+</table>
+<div>
+    <h2>Scheduled Pick-Ups</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Today's Pick-Ups</th>
+            </tr>
+        </thead>
+        @if(Model.TodayTrash.Count == 0)
+        {
+            <tr>
+                <td>Nothing Scheduled for Today </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var pickup in Model.TodayTrash)
+            {
+                <tr>
+                    <td>@pickup.Address.addressLine</td>
+                    <td>@Html.ActionLink("Pick up", "Pickup", "Employee", new { id = pickup.ID }, null)</td>
+                    <td>@Html.ActionLink("Report Problem", "Report", "Employee", new { id = pickup.ID }, null)</td>
+                </tr>
+            }
+        }
+    </table>
+</div>

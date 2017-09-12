@@ -11,7 +11,7 @@ namespace TrashCollection.Models
         public List<UserAddressJunction> TodayTrash { get; set; }
         public List<UserAddressJunction> TomorrowTrash { get; set; }
         public string Today { get; set; }
-        public string Tommorrow { get; set; }
+        public string Tomorrow { get; set; }
         public EmployeeWorkViewModel()
         {
             TodayTrash = new List<UserAddressJunction>();
