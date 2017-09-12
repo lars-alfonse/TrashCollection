@@ -66,6 +66,12 @@ namespace TrashCollection.Controllers
             var currentAccount = (from data in context.Accounts.Include("User") where data.User.Id == user.Id select data).First();
             return View(currentAccount);
         }
+        public ActionResult AccountHistory(int id)
+        {
+            var modelList = (from data in context.Transactions.Include("Account") where data.Account.ID == id select data).ToList();
+
+            return View(modelList);
+        }
         public ActionResult EditDays(int id)
         {
             AddressDateViewModel model = new AddressDateViewModel();

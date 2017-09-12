@@ -329,6 +329,7 @@
     <Content Include="Views\Customer\AddAddress.cshtml" />
     <Content Include="Views\Customer\EditDays.cshtml" />
     <Content Include="Views\Customer\AddDay.cshtml" />
+    <Content Include="Views\Customer\AccountHistory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
