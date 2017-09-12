@@ -74,7 +74,22 @@ namespace TrashCollection.Controllers
             }
             return RedirectToAction("Work", "Employee");
         }
-
+        public ActionResult PickUp(int id)
+        {
+            double charge = 50;
+            var address = (from data in context.UserAddresses.Include("User") where data.ID == id select data).First();
+            var user = (from data in context.Users where data.Id == address.User.Id select data).First();
+            var account = (from data in context.Accounts where data.User.Id == user.Id select data).First();
+            account.Balance += charge;
+            Transactions transaction = new Transactions();
+            transaction.Date = DateTime.Now;
+            transaction.Charges = charge;
+            transaction.Account = account;
+            transaction.Balance = account.Balance;
+            context.Transactions.Add(transaction);
+            context.SaveChanges();
+            return RedirectToAction("Work", "Employee");
+        }
         private ZipCode GetZip(EmployeeZipJunction model)
         {
             var matchedZip = (from data in context.Zip where data.zip == model.ZipCode.zip select data).FirstOrDefault();
