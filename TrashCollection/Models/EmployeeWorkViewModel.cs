@@ -12,10 +12,12 @@ namespace TrashCollection.Models
         public List<UserAddressJunction> TomorrowTrash { get; set; }
         public string Today { get; set; }
         public string Tomorrow { get; set; }
+        public List<AddressModels> Addresses { get; set; }
         public EmployeeWorkViewModel()
         {
             TodayTrash = new List<UserAddressJunction>();
             TomorrowTrash = new List<UserAddressJunction>();
+            Addresses = new List<AddressModels>();
         }
     }
 }

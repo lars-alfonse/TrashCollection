@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using TrashCollection.Models;
 
 namespace TrashCollection.Controllers
@@ -39,6 +40,9 @@ namespace TrashCollection.Controllers
                 foreach(var item in TodayTrash)
                 {
                     model.TodayTrash.Add((from data in context.UserAddresses.Include("Address").Include("User") where data.ID == item.ID select data).First());
+                    model.Addresses.Add((from data in context.Address.Include("City").Include("Zip").Include("City.State") where data.ID == item.Address.ID select data).First());
+
+
                 }
                 var TomorrowTrash = (from data in context.UserAddressDay.Include("UserAddress").Include("UserAddress.Address").Include("UserAddress.Address.City").Include("UserAddress.Address.Zip").Include("UserAddress.Address.City.State").Include("UserAddress.User") where data.Day.DayPrefix == model.Tomorrow && data.UserAddress.Address.Zip.zip == model.Zip.ZipCode.zip select data.UserAddress).ToList();
                 foreach (var item in TomorrowTrash)

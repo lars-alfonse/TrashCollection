@@ -2,7 +2,14 @@
 @{
     ViewBag.Title = "Work";
 }
-
+<head>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
 <table> 
     <thead class="table table-bordered table-hover">
         <tr> 
@@ -45,11 +52,46 @@
                 <tr>
                     <td>@pickup.Address.addressLine</td>
                     <td>@Html.ActionLink("Pick up", "Pickup", "Employee", new { id = pickup.ID }, null)</td>
-                    <td>@Html.ActionLink("Report Problem", "Report", "Employee", new { id = pickup.ID }, null)</td>
+                    <!--<td>@Html.ActionLink("Report Problem", "Report", "Employee", new { id = pickup.ID }, null)</td> -->
+
                 </tr>
             }
         }
     </table>
+    <h4>Route</h4>
+    <div id="map"></div>
+    <script>
+        var map;
+            var addresses = @Html.Raw(Json.Encode(Model.Addresses)) ;
+        function initMap() {
+            var latlng = new google.maps.LatLng(-34.397, 150.644);
+
+            var mapOptions = {
+                zoom: 8,
+                center: latlng
+            }
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        
+                for(i = 0; i < addresses.length; i++){
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'address': addresses[i].addressLine + " " + addresses[i].Zip.zip }, function (results, status) {
+                        if (status == 'OK') {
+                            map.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: results[0].geometry.location
+                            });
+                   
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                }
+            }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaTdGkLIf8iTGxg2cdThwRLUdNSUlizio&callback=initMap">
+    </script>
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
