@@ -15,7 +15,7 @@
             @Html.TextBoxFor(m => m.Message, new { @class = "form-control" })
         </div>
     </div>
-    @Html.HiddenFor(m => m.User)
+    @Html.HiddenFor(m => m.User.Id)
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Send" />

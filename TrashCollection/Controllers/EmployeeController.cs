@@ -94,7 +94,6 @@ namespace TrashCollection.Controllers
             context.SaveChanges();
             return RedirectToAction("Work", "Employee");
         }
-        [HttpGet]
         public ActionResult Report(int id)
         {
             var address = (from data in context.UserAddresses.Include("User") where data.ID == id select data).First();
@@ -104,13 +103,13 @@ namespace TrashCollection.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Report(Messages message)
+        public ActionResult Report(Messages model)
         { 
-            Messages model = new Messages();
-            model.Message = message.Message;
-            model.User = (from data in context.Users where data.Id == message.User.Id select data).First();
-            model.Date = DateTime.Now;
-            context.Messages.Add(model);
+            Messages message = new Messages();
+            message.Message = model.Message;
+            message.User = (from data in context.Users where data.Id == model.User.Id select data).First();
+            message.Date = DateTime.Now;
+            context.Messages.Add(message);
             context.SaveChanges();
             return RedirectToAction("Work", "Employee");
         }
