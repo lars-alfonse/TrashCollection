@@ -1,0 +1,22 @@
+﻿@model List<TrashCollection.Models.Messages>
+@{
+    ViewBag.Title = "Messages";
+}
+
+<h2>Messages</h2>
+@if (Model.Count > 0)
+{
+@foreach (var Message in Model)
+{
+
+    <tr>
+        <td>@Message.Date</td>
+        <td>@Message.Message</td>
+      
+    </tr>
+}
+}
+else
+{
+    <p>No messages</p>
+}

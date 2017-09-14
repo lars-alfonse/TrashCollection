@@ -163,6 +163,14 @@ namespace TrashCollection.Controllers
             }
             return RedirectToAction("Account", "Customer");
         }
+        public ActionResult Messages()
+        {
+            var username = User.Identity.GetUserName();
+            var user = (from data in context.Users where data.UserName == username select data).First();
+            var messages = (from data in context.Messages.Include("User") where data.User.Id == user.Id select data).ToList();
+            return View(messages);
+
+        }
         private AddressModels GetAddress(AddressModels model)
         {
             model.City = GetCity(model);

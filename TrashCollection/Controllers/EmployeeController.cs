@@ -109,7 +109,9 @@ namespace TrashCollection.Controllers
             Messages model = new Messages();
             model.Message = message.Message;
             model.User = (from data in context.Users where data.Id == message.User.Id select data).First();
+            model.Date = DateTime.Now;
             context.Messages.Add(model);
+            context.SaveChanges();
             return RedirectToAction("Work", "Employee");
         }
         private ZipCode GetZip(EmployeeZipJunction model)

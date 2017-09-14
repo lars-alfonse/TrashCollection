@@ -343,6 +343,7 @@
     <Content Include="Views\Customer\AccountHistory.cshtml" />
     <Content Include="Views\Employee\SelectZipCode.cshtml" />
     <Content Include="Views\Employee\Report.cshtml" />
+    <Content Include="Views\Customer\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
