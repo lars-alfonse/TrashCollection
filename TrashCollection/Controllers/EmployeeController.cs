@@ -94,6 +94,24 @@ namespace TrashCollection.Controllers
             context.SaveChanges();
             return RedirectToAction("Work", "Employee");
         }
+        [HttpGet]
+        public ActionResult Report(int id)
+        {
+            var address = (from data in context.UserAddresses.Include("User") where data.ID == id select data).First();
+           
+            Messages model = new Messages();
+            model.User = (from data in context.Users where data.Id == address.User.Id select data).First();
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Report(Messages message)
+        { 
+            Messages model = new Messages();
+            model.Message = message.Message;
+            model.User = (from data in context.Users where data.Id == message.User.Id select data).First();
+            context.Messages.Add(model);
+            return RedirectToAction("Work", "Employee");
+        }
         private ZipCode GetZip(EmployeeZipJunction model)
         {
             var matchedZip = (from data in context.Zip where data.zip == model.ZipCode.zip select data).FirstOrDefault();

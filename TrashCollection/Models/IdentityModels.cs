@@ -40,6 +40,7 @@ namespace TrashCollection.Models
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Transactions> Transactions { get; set; }
         public DbSet<EmployeeZipJunction> WorkZip { get; set; }
+        public DbSet<Messages> Messages { get; set; }
 
     }
 }

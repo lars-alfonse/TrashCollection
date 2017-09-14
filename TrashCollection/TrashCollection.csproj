@@ -247,6 +247,10 @@
     <Compile Include="Migrations\201709121346058_Added employee zip code junction.Designer.cs">
       <DependentUpon>201709121346058_Added employee zip code junction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709141257536_added messages table.cs" />
+    <Compile Include="Migrations\201709141257536_added messages table.Designer.cs">
+      <DependentUpon>201709141257536_added messages table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressDateViewModel.cs" />
@@ -258,6 +262,7 @@
     <Compile Include="Models\EmployeeZipJunction.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\UserAddressDayJunction.cs" />
     <Compile Include="Models\UserAddressJunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -337,6 +342,7 @@
     <Content Include="Views\Customer\AddDay.cshtml" />
     <Content Include="Views\Customer\AccountHistory.cshtml" />
     <Content Include="Views\Employee\SelectZipCode.cshtml" />
+    <Content Include="Views\Employee\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -382,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709121346058_Added employee zip code junction.resx">
       <DependentUpon>201709121346058_Added employee zip code junction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141257536_added messages table.resx">
+      <DependentUpon>201709141257536_added messages table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
